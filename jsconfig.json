@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "module": "esnext",
+    "target": "es2015",
+    "jsx": "react-jsx",
+    "strict": true,
+    "lib": ["es6", "dom"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": true,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "pretty": true,
+
+    "baseUrl": "./src",
+    "paths": {
+      "assets/*": ["assets/*"],
+      "components/*": ["components/*"],
+      "configs/*": ["configs/*"],
+      "containers/*": ["containers/*"],
+      "contexts/*": ["contexts/*"],
+      "layouts/*": ["layouts/*"],
+      "mocks/*": ["mocks/*"],
+      "pages/*": ["pages/*"],
+      "styles/*": ["styles/*"],
+      "services/*": ["services/*"],
+      "constants/*": ["constants/*"]
+    }
+  }
+}
