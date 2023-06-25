@@ -1,6 +1,8 @@
 import axios from 'axios';
 import ENV from 'constants/env';
+import { AuthService } from 'services/AuthServices';
 
+AuthService.config({ storage: localStorage });
 const http = axios.create({
   baseURL: ENV.API_BASE_URL,
   headers: {

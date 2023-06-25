@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { flexRender, useReactTable, getCoreRowModel } from '@tanstack/react-table';
 import { Tr, Th, Td, Thead, Tbody, Skeleton, Table as ChakraTable } from '@chakra-ui/react';
 
-function Table({ data, columns, isLoading }) {
+export function Table({ data, columns, isLoading }) {
   const { getHeaderGroups, getRowModel } = useReactTable({
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -83,5 +83,3 @@ Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   isLoading: PropTypes.bool,
 };
-
-export default Table;

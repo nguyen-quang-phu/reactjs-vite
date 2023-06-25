@@ -13,7 +13,7 @@ const marginTop = css`
   margin-top: 5rem;
 `;
 
-function HomePage() {
+export function HomePage() {
   return (
     <Box css={boxStyle}>
       <Heading
@@ -33,4 +33,3 @@ function HomePage() {
 }
 
 HomePage.defaultProps = {};
-export default HomePage;
