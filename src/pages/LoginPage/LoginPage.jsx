@@ -7,6 +7,7 @@ import queryString from 'query-string';
 import { shallow } from 'zustand/shallow';
 import { useForm } from 'react-hook-form';
 import { login } from 'services/auth';
+import { Center, Button, Flex, VStack, Input } from '@chakra-ui/react';
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ export function LoginPage() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const { isAuthenticated, setToken } = useAuthStore(
@@ -32,9 +32,9 @@ export function LoginPage() {
   });
   const { isLoading, mutate, isError } = useMutation(login, {
     onSuccess: (data) => {
-      const access_token = data?.data.access_token;
+      const accessToken = data?.data.accessToken;
       const { redirect } = queryString.parse(location.search);
-      if (access_token) setToken({ token: access_token });
+      if (accessToken) setToken({ token: accessToken });
       navigate(redirect || '/');
     },
   });
@@ -43,38 +43,42 @@ export function LoginPage() {
     mutate(data);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Username</label>
-        <input
-          type='text'
-          {...register('username')}
+    <Center h='100vh'>
+
+      <VStack as='form' onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label>Username</label>
+          <Input
+            type='text'
+            {...register('username')}
+            style={{
+              border: '1px solid',
+            }}
+          />
+          {errors.username && <span>This field is required</span>}
+        </div>
+        <div>
+          <label>Password</label>
+          <Input
+            type='password'
+            {...register('password')}
+            style={{
+              border: '1px solid',
+            }}
+          />
+          {errors.password && <span>This field is required</span>}
+        </div>
+        <Button
+          type='submit'
           style={{
             border: '1px solid',
           }}
-        />
-        {errors.username && <span>This field is required</span>}
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          {...register('password')}
-          style={{
-            border: '1px solid',
-          }}
-        />
-        {errors.password && <span>This field is required</span>}
-      </div>
-      <button
-        type='submit'
-        style={{
-          border: '1px solid',
-        }}
-      >
-        Submit
-      </button>
-    </form>
+        >
+          Submit
+        </Button>
+      </VStack>
+    </Center>
+
   );
 }
 

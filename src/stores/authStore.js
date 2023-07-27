@@ -1,4 +1,3 @@
-import { AuthService } from 'services';
 import { create } from 'zustand';
 
 const defaultState = {
@@ -7,7 +6,7 @@ const defaultState = {
   loading: false,
 };
 
-const token = await AuthService.token();
+const token = localStorage.getItem('authToken');
 const initialState = {
   ...defaultState,
   token,
@@ -18,14 +17,14 @@ export const useAuthStore = create((set) => ({
   ...initialState,
   setToken: async ({ token }) => {
     try {
-      if (token) AuthService.setToken(token);
+      localStorage.setItem('authToken', token);
       set(() => ({ token, isAuthenticated: true }));
     } catch (error) {
       set(() => ({ error }));
     }
   },
   logout: () => {
-    AuthService.clearToken();
-    set(() => ({ ...defaultState }));
+    localStorage.removeItem('authToken');
+    set(() => ({ ...defaultState, isAuthenticated: false }));
   },
 }));
